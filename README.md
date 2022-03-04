@@ -6,7 +6,6 @@ Example:
 ```python
 from orm_controllers import DictBaseController
 from orm_models import BaseModel
-from orm_objects import DictBaseObject
 from orm_types import Str, Age
 
 db = {
@@ -42,13 +41,9 @@ class EmployeeModel(BaseModel):
     position = Str(name='position')
 
 
-class EmployeeObject(DictBaseObject):
-    """Object class for EmployeeModel"""
-    __model__ = EmployeeModel
-
-
 if __name__ == '__main__':
 
+    EmployeeObject = EmployeeModel.get_object(controller=DictBaseController)
     DictBaseController.connect(db=db)
 
     em = EmployeeObject(name='TestName', lastname='TestLastName', age=42, position='TestPosition')
@@ -73,6 +68,4 @@ if __name__ == '__main__':
 
     # Result:
     # <EmployeeObject: (position='C++/Qt Programmer', name='Alex', lastname='Alyinic', age=32)>
-    # <EmployeeObject: (position='C/C++ Programmer', name='Alexei', lastname='Vasiliev', age=40)>
-
-```
+    # <EmployeeObject: (position='C/C++ Programmer', name='Alexei', lastname='Vasiliev', age=40)>```
