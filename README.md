@@ -1,8 +1,9 @@
 # My First Dict ORM
 This is super simple dict ORM.  This GIST shows how to use property for describe data models.
 
-Example:
+### Use example
 
+1. Import BaseModel and declare dict database
 ```python
 from typing import Type
 
@@ -33,8 +34,10 @@ db = {
         }
     ]
 }
+```
 
-
+2. Declare Employee model
+```python
 class EmployeeModel(BaseModel):
     __table_name__ = "employees"
 
@@ -42,14 +45,20 @@ class EmployeeModel(BaseModel):
     lastname = Str(name='lastname')
     age = Age(name='age')
     position = Str(name='position')
+```
 
-
+4. Connect to database and create ObjectClass
+```python
 if __name__ == '__main__':
     # Connect to db
     DictBaseController.connect(db=db)
     # Create Object class
     EmployeeObject = EmployeeModel.get_object(controller=DictBaseController)  # type: Type[BaseObject]
 
+```
+
+5. Do some tests
+```python
     # ------------------ SELECT FRO DB ------------------
 
     ems = EmployeeObject.objects.select(
