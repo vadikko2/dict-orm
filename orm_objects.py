@@ -66,3 +66,4 @@ class BaseObject(metaclass=MetaObject):
         return {
             field_name: attr.value for field_name, attr in self.__attributes_value__.items()
         }
+
