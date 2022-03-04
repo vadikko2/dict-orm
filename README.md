@@ -53,13 +53,17 @@ if __name__ == '__main__':
     # Connect to db
     DictBaseController.connect(db=db)
     # Create Object class
-    EmployeeObject = EmployeeModel.get_object(controller=DictBaseController)  # type: Type[BaseObject]
+    EmployeeObject = EmployeeModel.get_object(
+        controller=DictBaseController,
+        cls_name='EmployeeObject'
+    )  # type: Type[BaseObject]
+
 
 ```
 
 5. Do some tests
 ```python
-    # ------------------ SELECT FRO DB ------------------
+        # ------------------ SELECT FRO DB ------------------
 
     ems = EmployeeObject.objects.select(
         attrs=(
@@ -78,8 +82,8 @@ if __name__ == '__main__':
     print('\n')
 
     # Result:
-    # <EmployeeObject: (position='C++/Qt Programmer', name='Alex', lastname='Alyinic', age=32)>
-    # <EmployeeObject: (position='C/C++ Programmer', name='Alexei', lastname='Vasiliev', age=40)>
+    # <EmployeeObject: (position='C++/Qt Programmer', age=32, name='Alex', lastname='Alyinic')>
+    # <EmployeeObject: (position='C/C++ Programmer', age=40, name='Alexei', lastname='Vasiliev')>
 
     # ------------------ CREATE NEW EMPLOYEE ------------------
 
@@ -111,7 +115,7 @@ if __name__ == '__main__':
         print(em)
     print('\n')
 
-    # Result: <BaseObject: (position='TestPosition', age=42, lastname='TestLastName', name='TestName')>
+    # Result: <EmployeeObject: (position='TestPosition', age=42, lastname='TestLastName', name='TestName')>
 
     # ------------------ BULK INSERT AND AFTER THAT SELECT NEW EMPLOYEES FROM DB ------------------
 
@@ -139,18 +143,18 @@ if __name__ == '__main__':
     print('\n')
 
     # Result:
-    # <BaseObject: (position='TestPosition', name='TestName', lastname='TestLastName', age=42)>
-    # <BaseObject: (position='TestPosition0', name='TestName0', lastname='TestLastName0', age=42)>
-    # <BaseObject: (position='TestPosition1', name='TestName1', lastname='TestLastName1', age=43)>
-    # <BaseObject: (position='TestPosition2', name='TestName2', lastname='TestLastName2', age=44)>
-    # <BaseObject: (position='TestPosition3', name='TestName3', lastname='TestLastName3', age=45)>
-    # <BaseObject: (position='TestPosition4', name='TestName4', lastname='TestLastName4', age=46)>
-    # <BaseObject: (position='TestPosition5', name='TestName5', lastname='TestLastName5', age=47)>
-    # <BaseObject: (position='TestPosition6', name='TestName6', lastname='TestLastName6', age=48)>
-    # <BaseObject: (position='TestPosition7', name='TestName7', lastname='TestLastName7', age=49)>
-    # <BaseObject: (position='TestPosition8', name='TestName8', lastname='TestLastName8', age=50)>
-    # <BaseObject: (position='TestPosition9', name='TestName9', lastname='TestLastName9', age=51)>
-
+    # <EmployeeObject: (position='TestPosition', age=42, lastname='TestLastName', name='TestName')>
+    # <EmployeeObject: (position='TestPosition0', age=42, lastname='TestLastName0', name='TestName0')>
+    # <EmployeeObject: (position='TestPosition1', age=43, lastname='TestLastName1', name='TestName1')>
+    # <EmployeeObject: (position='TestPosition2', age=44, lastname='TestLastName2', name='TestName2')>
+    # <EmployeeObject: (position='TestPosition3', age=45, lastname='TestLastName3', name='TestName3')>
+    # <EmployeeObject: (position='TestPosition4', age=46, lastname='TestLastName4', name='TestName4')>
+    # <EmployeeObject: (position='TestPosition5', age=47, lastname='TestLastName5', name='TestName5')>
+    # <EmployeeObject: (position='TestPosition6', age=48, lastname='TestLastName6', name='TestName6')>
+    # <EmployeeObject: (position='TestPosition7', age=49, lastname='TestLastName7', name='TestName7')>
+    # <EmployeeObject: (position='TestPosition8', age=50, lastname='TestLastName8', name='TestName8')>
+    # <EmployeeObject: (position='TestPosition9', age=51, lastname='TestLastName9', name='TestName9')>
+    
     # Disconnect from db
     DictBaseController.disconnect()
 ```
