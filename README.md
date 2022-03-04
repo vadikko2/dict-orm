@@ -1,4 +1,4 @@
-# My First Dict ORM
+# Simple Dict ORM
 This is super simple dict ORM.  This GIST shows how to use property for describe data models.
 
 ### Use example
