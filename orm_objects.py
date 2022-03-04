@@ -1,5 +1,5 @@
 """Data Classes"""
-from typing import Any
+from typing import Any, Dict
 
 from orm_controllers import BaseController
 from orm_types import Type
@@ -23,6 +23,11 @@ class DataObject:
     @property
     def value(self):
         return self._value
+
+    @value.setter
+    def value(self, value):
+        self._type_.validate(value)
+        self._value = value
 
 
 class MetaObject(type):
@@ -56,3 +61,8 @@ class BaseObject(metaclass=MetaObject):
 
     def __getattr__(self, attr):
         return self.__attributes_value__[attr]
+
+    def as_dict(self) -> Dict:
+        return {
+            field_name: attr.value for field_name, attr in self.__attributes_value__.items()
+        }
