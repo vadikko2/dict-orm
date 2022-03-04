@@ -13,19 +13,29 @@ class BaseController(ABC):
         self.model_class = self.object_class.__model__
 
     @staticmethod
-    def connect(cls):
+    def connect():
+        """Connect to database method"""
+        raise NotImplementedError
+
+    @staticmethod
+    def disconnect():
+        """Disconnect method"""
         raise NotImplementedError
 
     def select(self, attrs, filters):
+        """Select Query"""
         raise NotImplementedError
 
     def bulk_insert(self, rows: list):
+        """Bulk Insert Query"""
         raise NotImplementedError
 
     def update(self, new_data: dict):
+        """Update Query"""
         raise NotImplementedError
 
     def delete(self):
+        """Delete Query"""
         raise NotImplementedError
 
 
