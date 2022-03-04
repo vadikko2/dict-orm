@@ -7,7 +7,7 @@ This is super simple dict ORM.  This GIST shows how to use property for describe
 ```python
 from typing import Type
 
-from orm_controllers import DictBaseController
+from orm_controllers import DictController
 from orm_models import BaseModel
 from orm_objects import BaseObject
 from orm_types import Str, Age
@@ -51,10 +51,10 @@ class EmployeeModel(BaseModel):
 ```python
 if __name__ == '__main__':
     # Connect to db
-    DictBaseController.connect(db=db)
+    DictController.connect(db=db)
     # Create Object class
     EmployeeObject = EmployeeModel.get_object(
-        controller=DictBaseController,
+        controller=DictController,
         cls_name='EmployeeObject'
     )  # type: Type[BaseObject]
 
@@ -156,7 +156,9 @@ if __name__ == '__main__':
     # <EmployeeObject: (position='TestPosition9', age=51, lastname='TestLastName9', name='TestName9')>
     
     # Disconnect from db
-    DictBaseController.disconnect()
+    DictController.disconnect()
 ```
+
+### P.S.
 
 If you wanth to extend ORM for working with ant database you should implement Controller class and inherit it from BaseController (like DictController).
