@@ -158,3 +158,5 @@ if __name__ == '__main__':
     # Disconnect from db
     DictBaseController.disconnect()
 ```
+
+If you wanth to extend ORM for working with ant database you should implement Controller class and inherit it from BaseController (like DictController).
