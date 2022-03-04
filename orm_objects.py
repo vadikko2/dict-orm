@@ -1,7 +1,7 @@
 """Data Classes"""
 from typing import Any
 
-from orm_controllers import BaseController, DictBaseController
+from orm_controllers import BaseController
 from orm_types import Type
 
 
@@ -36,13 +36,10 @@ class MetaObject(type):
         return cls._get_manager()
 
 
-class DictMetaObject(MetaObject):
-    __controller__ = DictBaseController
-
-
 class BaseObject(metaclass=MetaObject):
     """Match database model and data values"""
-    __slots__ = ('__attributes_value__', '__model__')
+    __attributes_value__ = None
+    __model__ = None
 
     def __init__(self, **row_data):
         self.__model__ = self.__model__()
@@ -59,8 +56,3 @@ class BaseObject(metaclass=MetaObject):
 
     def __getattr__(self, attr):
         return self.__attributes_value__[attr]
-
-
-class DictBaseObject(BaseObject, metaclass=DictMetaObject):
-    """Match dictionary database model and data values"""
-    pass
