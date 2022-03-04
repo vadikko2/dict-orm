@@ -43,7 +43,7 @@ class BaseController(ABC):
         raise NotImplementedError
 
 
-class DictBaseController(BaseController):
+class DictController(BaseController):
     """Dictionary Data Base controller"""
 
     @staticmethod
